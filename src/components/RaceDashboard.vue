@@ -34,21 +34,10 @@
   export default Vue.extend({
     name: 'RaceDashboard',
     components: {},
-    props: {
-      // isPaused: {
-      //   type: Boolean,
-      //   default: true,
-      // },
-      // isGenerated: {
-      //   type: Boolean,
-      //   default: true,
-      // },
-    },
     data() {
       return {
         currentLap: 0,
         laps: [1200, 1400, 1600, 1800, 2000, 2200], // Lap distances
-        // isPaused: true, // Track if the race is paused
         raceInterval: null as any, // To store the interval ID
         positions: Array(10).fill(0), // Track positions of horses
         finishedHorses: [] as Horse[]
@@ -83,9 +72,8 @@
       }
     },
     methods: {
-      ...mapActions(['selectRandomHorses', 'addRaceResult', 'resetRaceResults']),
+      ...mapActions(['selectRandomHorses', 'addRaceResult', 'resetRaceResults', 'setPause']),
       toggleRace() {
-        // this.isPaused = !this.isPaused;
         if (!this.isPaused) {
           this.moveHorses();
         } else {
@@ -94,7 +82,6 @@
       },
       generateProgram() {
         clearInterval(this.raceInterval);
-        // this.isPaused = true;
         this.currentLap = 0;
         this.positions = Array(10).fill(0);
         this.resetHorsesPosition();
@@ -126,7 +113,7 @@
 
               if (this.positions[index] >= distance) {
                 this.finishedHorses.push(this.currentSelectedHorses[index]);
-                console.log(`Finished: ${this.currentSelectedHorses[index].name}`);
+                // console.log(`Finished: ${this.currentSelectedHorses[index].name}`);
               }
             }
           });
@@ -147,6 +134,7 @@
               this.moveHorses();
             } else {
               console.log('All races completed');
+              this.setPause(true);
             }
           }
         };

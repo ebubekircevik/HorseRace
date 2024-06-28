@@ -1,27 +1,5 @@
 <template>
   <div>
-    <!-- <h2>Race Results</h2>
-    <div v-for="(result, raceIndex) in raceResults" :key="raceIndex" class="race-result">
-      <h3>Race {{ raceIndex + 1 }}</h3>
-      <div class="race-details">
-        <div>
-          <h4>Participants</h4>
-          <ul>
-            <li v-for="(horse, horseIndex) in allSelectedHorses[raceIndex]" :key="horseIndex">
-              {{ horse.name }}
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h4>Results</h4>
-          <ul>
-            <li v-for="(horseName, horseIndex) in result" :key="horseIndex">
-              {{ horseName }}
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div> -->
     <div class="tables">
       <div class="programs">
         <div class="program-header">Program</div>
@@ -36,7 +14,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="bg-white" v-for="(item, index) in program" >
+                <tr class="bg-white" v-for="(item, index) in program">
                   <td class="positon">{{ (index+1) }}</td>
                   <td class="name">{{ item.name }}</td>
                 </tr>
@@ -58,7 +36,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="bg-white" v-for="(item, index) in result" >
+                <tr class="bg-white" v-for="(item, index) in result">
                   <td class="positon">{{ (index+1) }}</td>
                   <td class="name">{{ item }}</td>
                 </tr>
@@ -80,10 +58,10 @@
   export default Vue.extend({
     name: 'RaceResult',
     data() {
-    return {
-      laps: [1200, 1400, 1600, 1800, 2000, 2200],
-    };
-  },
+      return {
+        laps: [1200, 1400, 1600, 1800, 2000, 2200],
+      };
+    },
     computed: {
       ...mapGetters(['raceResults', 'allSelectedHorses']),
     },
@@ -91,19 +69,6 @@
 </script>
 
 <style scoped>
-  /* .race-result {
-  margin-bottom: 20px;
-}
-
-.race-details {
-  display: flex;
-  justify-content: space-between;
-}
-
-.race-details > div {
-  width: 45%;
-} */
-
   .tables {
     display: grid;
     grid-template-columns: 50% 50%;
@@ -137,11 +102,12 @@
     border-collapse: collapse;
   }
 
-  .bg-white{
+  .bg-white {
     background-color: white;
   }
-  .list{
+
+  .list {
     max-height: calc(100vh - 120px);
-  overflow-y: auto;
+    overflow-y: auto;
   }
 </style>

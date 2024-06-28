@@ -3,7 +3,7 @@ import Vuex, { StoreOptions } from 'vuex';
 
 Vue.use(Vuex);
 
-interface Horse {
+export interface Horse {
   id: number;
   name: string;
   condition: number;
@@ -148,12 +148,12 @@ const storeOptions: StoreOptions<RootState> = {
     isGenerated: true,
   },
   getters: {
-    horses: state => state.horses,
-    selectedHorses: state => state.selectedHorses[state.selectedHorses.length - 1] || [],
-    allSelectedHorses: state => state.selectedHorses,
-    raceResults: state => state.raceResults,
-    isPaused: state => state.isPaused,
-    isGenerated: state => state.isGenerated
+    horses: (state) => state.horses,
+    selectedHorses: (state) => (state.selectedHorses[state.selectedHorses.length - 1] || []),
+    allSelectedHorses: (state) => state.selectedHorses,
+    raceResults: (state) => state.raceResults,
+    isPaused: (state) => state.isPaused,
+    isGenerated: (state) => state.isGenerated,
   },
   mutations: {
     setHorses(state, horses: Horse[]) {
@@ -169,8 +169,8 @@ const storeOptions: StoreOptions<RootState> = {
       state.raceResults = [];
       state.selectedHorses = [];
     },
-    setPause(state, puase: boolean) {
-      state.isPaused = puase;
+    setPause(state, pause: boolean) {
+      state.isPaused = pause;
     },
     setGenerated(state, generated: boolean) {
       state.isGenerated = generated;
@@ -200,12 +200,12 @@ const storeOptions: StoreOptions<RootState> = {
       commit('resetRaceResults');
     },
     setPause({ commit }, result: boolean) {
-      commit('setPause',result);
+      commit('setPause', result);
     },
     setGenerated({ commit }, result: boolean) {
-      commit('setGenerated',result);
+      commit('setGenerated', result);
     },
-  }
+  },
 };
 
 export default new Vuex.Store<RootState>(storeOptions);

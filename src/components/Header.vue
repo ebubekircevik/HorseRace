@@ -37,7 +37,7 @@
   .container {
     display: flex;
     justify-content: space-between;
-    padding: 5px;
+    padding: 10px;
     background-color: #fe8a84;
   }
 
